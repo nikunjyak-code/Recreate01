@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expert Trainers | MeraGym</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#070B11;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      width:450px;
+      height:450px;
+      background:rgba(255,0,0,0.15);
+      filter:blur(120px);
+      top:-120px;
+      left:-120px;
+      z-index:-1;
+    }
+
+    body::after{
+      content:'';
+      position:fixed;
+      width:400px;
+      height:400px;
+      background:rgba(255,120,0,0.08);
+      filter:blur(120px);
+      bottom:-100px;
+      right:-100px;
+      z-index:-1;
+    }
+
+    .container{
+      width:100%;
+      max-width:1350px;
+      margin:auto;
+      padding-left:24px;
+      padding-right:24px;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:sticky;
+      top:0;
+      padding-left:24px;
+      padding-right:24px;
+      z-index:1000;
+      backdrop-filter:blur(20px);
+      background:rgba(0,0,0,0.4);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-content{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 0;
+    }
+
+    .logo{
+      font-size:32px;
+      font-weight:900;
+      color:#ff2d2d;
+    }
+
+    .logo span{
+      color:white;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:35px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#bdbdbd;
+      transition:.3s;
+    }
+
+    .nav-links a:hover{
+      color:white;
+    }
+
+    .hamburger{
+      display:none;
+      font-size:34px;
+      cursor:pointer;
+    }
+
+    /* HERO */
+
+    .hero{
+      padding-bottom:90px;
+    }
+
+    .hero-card{
+      overflow:hidden;
+      padding:90px 70px;
+
+      background:
+      linear-gradient(rgba(7,11,17,0.82), rgba(7,11,17,0.92)),
+      url('https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1600&auto=format&fit=crop');
+
+      background-size:cover;
+      background-position:center;
+
+      margin-left:-24px;
+      margin-right:-24px;
+      margin-top:-80px;
+    }
+
+    .hero-card p{
+      color:#ff4545;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .hero-card h1{
+      margin-top:15px;
+      font-size:86px;
+      line-height:.95;
+      font-weight:900;
+      max-width:900px;
+    }
+
+    .hero-card h1 span{
+      color:#ff2d2d;
+    }
+
+    .hero-card h3{
+      margin-top:25px;
+      max-width:720px;
+      line-height:1.8;
+      color:#c0c0c0;
+      font-weight:400;
+      font-size:18px;
+    }
+
+    /* SECTION */
+
+    section{
+      padding:90px 0;
+    }
+
+    .section-top{
+      margin-bottom:50px;
+    }
+
+    .section-top p{
+      color:#ff4545;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .section-top h2{
+      margin-top:10px;
+      font-size:52px;
+      font-weight:900;
+    }
+
+    /* TRAINERS */
+
+    .trainer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .trainer-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:35px;
+      overflow:hidden;
+      transition:.4s;
+      backdrop-filter:blur(20px);
+    }
+
+    .trainer-card:hover{
+      transform:translateY(-10px);
+
+      border-color:#ff2d2d;
+
+      box-shadow:
+      0 10px 40px rgba(255,45,45,0.18),
+      0 0 20px rgba(255,45,45,0.12);
+    }
+
+    .trainer-card img{
+      width:100%;
+      height:340px;
+      object-fit:cover;
+      transition:.5s;
+    }
+
+    .trainer-card:hover img{
+      transform:scale(1.05);
+    }
+
+    .trainer-content{
+      padding:30px;
+    }
+
+    .trainer-content h3{
+      font-size:30px;
+      font-weight:800;
+    }
+
+    .trainer-role{
+      margin-top:10px;
+      color:#ff5d5d;
+      font-weight:600;
+    }
+
+    .trainer-desc{
+      margin-top:18px;
+      line-height:1.8;
+      color:#b7b7b7;
+    }
+
+    .trainer-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    .tag{
+      padding:10px 16px;
+      border-radius:40px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#d0d0d0;
+      font-size:13px;
+    }
+
+    .trainer-bottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:30px;
+    }
+
+    .experience{
+      color:#cfcfcf;
+      font-size:15px;
+    }
+
+    .btn{
+      background:#ff2d2d;
+      border:none;
+      color:white;
+      padding:14px 24px;
+      border-radius:16px;
+      cursor:pointer;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+      background:#ff4545;
+    }
+
+    /* SPECIALTIES */
+
+    .speciality-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      margin-top:50px;
+    }
+
+    .speciality-card{
+      padding:35px;
+      border-radius:30px;
+
+      background:rgba(255,255,255,0.05);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      transition:.3s;
+    }
+
+    .speciality-card:hover{
+      transform:translateY(-6px);
+
+      border-color:#ff2d2d;
+    }
+
+    .speciality-icon{
+      width:70px;
+      height:70px;
+      border-radius:22px;
+
+      background:rgba(255,0,0,0.15);
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      font-size:30px;
+    }
+
+    .speciality-card h3{
+      margin-top:25px;
+      font-size:24px;
+    }
+
+    .speciality-card p{
+      margin-top:15px;
+      color:#ababab;
+      line-height:1.8;
+    }
+
+    /* TRANSFORMATION */
+
+    .transform-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;
+      margin-top:50px;
+    }
+
+    .transform-card{
+      border-radius:35px;
+      overflow:hidden;
+      position:relative;
+      min-height:420px;
+    }
+
+    .transform-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .transform-overlay{
+      position:absolute;
+      inset:0;
+
+      background:
+      linear-gradient(transparent, rgba(0,0,0,0.9));
+
+      display:flex;
+      flex-direction:column;
+      justify-content:end;
+
+      padding:35px;
+    }
+
+    .transform-overlay h3{
+      font-size:34px;
+      font-weight:800;
+    }
+
+    .transform-overlay p{
+      margin-top:15px;
+      line-height:1.8;
+      color:#d7d7d7;
+    }
+
+    /* FAQ */
+
+    .faq{
+      max-width:900px;
+      margin:auto;
+    }
+
+    .faq-item{
+      margin-bottom:20px;
+
+      background:rgba(255,255,255,0.05);
+
+      border-radius:25px;
+
+      overflow:hidden;
+
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-question{
+      padding:25px;
+
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:center;
+
+      cursor:pointer;
+
+      font-weight:700;
+
+      font-size:18px;
+    }
+
+    .faq-answer{
+      max-height:0;
+
+      overflow:hidden;
+
+      transition:.4s;
+
+      color:#a9a9a9;
+
+      line-height:1.8;
+
+      padding:0 25px;
+    }
+
+    .faq-item.active .faq-answer{
+      max-height:200px;
+      padding:0 25px 25px;
+    }
+
+    .faq-icon{
+      font-size:28px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:80px 0 40px;
+
+      border-top:1px solid rgba(255,255,255,0.08);
+
+      background:rgba(0,0,0,0.4);
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:50px;
+    }
+
+    footer h3{
+      margin-bottom:20px;
+      font-size:24px;
+    }
+
+    footer p{
+      color:#9f9f9f;
+      line-height:2;
+    }
+
+    .copyright{
+      text-align:center;
+      margin-top:60px;
+      color:#7d7d7d;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .hero-card{
+        padding:50px 30px;
+      }
+
+      .hero-card h1{
+        font-size:58px;
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      .hamburger{
+        display:block;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:90px;
+        left:0;
+        width:100%;
+
+        background:#0b1118;
+
+        padding:30px;
+
+        flex-direction:column;
+
+        display:none;
+      }
+
+      .nav-links.active{
+        display:flex;
+      }
+
+      .hero-card h1{
+        font-size:48px;
+      }
+
+      .section-top h2{
+        font-size:38px;
+      }
+
+      .trainer-grid{
+        display:flex;
+        overflow-x:auto;
+        gap:20px;
+        scroll-snap-type:x mandatory;
+      }
+
+      .trainer-grid::-webkit-scrollbar{
+        display:none;
+      }
+
+      .trainer-card{
+        margin-top:10px;
+        width:300px;
+        flex-shrink:0;
+        scroll-snap-align:start;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="container nav-content">
+
+      <div class="logo">
+        MERA<span>GYM</span>
+      </div>
+
+      <div class="hamburger" id="hamburger">
+        ☰
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="Redesign(1.1).html">Home</a>
+        <a href="Redesign(1.2).html">Memberships</a>
+        <a href="Redesign(1.3).html">Trainers</a>
+        <a href="Redesign(1.4).html">Contact</a>
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="hero-card">
+
+        <p>Professional Coaches</p>
+
+        <h1>
+          TRAIN WITH
+          <span>EXPERT FITNESS COACHES</span>
+        </h1>
+
+        <h3>
+          Meet certified trainers specialized in strength transformation, cardio fitness, bodybuilding, yoga, HIIT and functional training to guide your complete fitness journey.
+        </h3>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TRAINERS -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-top">
+
+        <p>Fitness Coaches</p>
+
+        <h2>Meet Our Trainers</h2>
+
+      </div>
+
+      <div class="trainer-grid">
+
+        <!-- CARD -->
+
+        <div class="trainer-card">
+
+          <img loading="lazy" src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="trainer-content">
+
+            <h3>Rahul Verma</h3>
+
+            <div class="trainer-role">
+              Strength & Muscle Coach
+            </div>
+
+            <div class="trainer-desc">
+              Specialized in bodybuilding, strength transformation and muscle gain training programs.
+            </div>
+
+            <div class="trainer-tags">
+              <div class="tag">Bodybuilding</div>
+              <div class="tag">Strength</div>
+              <div class="tag">Powerlifting</div>
+            </div>
+
+            <div class="trainer-bottom">
+
+              <div class="experience">
+                8+ Years Experience
+              </div>
+
+              <button class="btn">
+                View Profile
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="trainer-card">
+
+          <img loading="lazy" src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="trainer-content">
+
+            <h3>Ananya Sharma</h3>
+
+            <div class="trainer-role">
+              Yoga & HIIT Trainer
+            </div>
+
+            <div class="trainer-desc">
+              Expert in flexibility training, fat loss programs and high intensity workout routines.
+            </div>
+
+            <div class="trainer-tags">
+              <div class="tag">Yoga</div>
+              <div class="tag">HIIT</div>
+              <div class="tag">Flexibility</div>
+            </div>
+
+            <div class="trainer-bottom">
+
+              <div class="experience">
+                6+ Years Experience
+              </div>
+
+              <button class="btn">
+                View Profile
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="trainer-card">
+
+          <img loading="lazy" src="https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="trainer-content">
+
+            <h3>Vikram Singh</h3>
+
+            <div class="trainer-role">
+              Cardio Transformation Coach
+            </div>
+
+            <div class="trainer-desc">
+              Helping members achieve fat loss, stamina improvement and athletic performance goals.
+            </div>
+
+            <div class="trainer-tags">
+              <div class="tag">Cardio</div>
+              <div class="tag">Fat Loss</div>
+              <div class="tag">Athletics</div>
+            </div>
+
+            <div class="trainer-bottom">
+
+              <div class="experience">
+                7+ Years Experience
+              </div>
+
+              <button class="btn">
+                View Profile
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SPECIALITIES -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-top">
+
+        <p>Training Specialities</p>
+
+        <h2>Workout Expertise</h2>
+
+      </div>
+
+      <div class="speciality-grid">
+
+        <div class="speciality-card">
+
+          <div class="speciality-icon">
+            💪
+          </div>
+
+          <h3>Muscle Building</h3>
+
+          <p>
+            Advanced strength and hypertrophy programs designed for lean muscle growth.
+          </p>
+
+        </div>
+
+        <div class="speciality-card">
+
+          <div class="speciality-icon">
+            🔥
+          </div>
+
+          <h3>Fat Loss</h3>
+
+          <p>
+            Personalized cardio and HIIT routines focused on body fat reduction.
+          </p>
+
+        </div>
+
+        <div class="speciality-card">
+
+          <div class="speciality-icon">
+            ⚡
+          </div>
+
+          <h3>Functional Training</h3>
+
+          <p>
+            Improve mobility, stamina, flexibility and athletic performance.
+          </p>
+
+        </div>
+
+        <div class="speciality-card">
+
+          <div class="speciality-icon">
+            🧘
+          </div>
+
+          <h3>Yoga & Recovery</h3>
+
+          <p>
+            Guided yoga and recovery sessions for flexibility and relaxation.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TRANSFORMATIONS -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-top">
+
+        <p>Transformations</p>
+
+        <h2>Fitness Success Stories</h2>
+
+      </div>
+
+      <div class="transform-grid">
+
+        <div class="transform-card">
+
+          <img loading="lazy" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="transform-overlay">
+
+            <h3>12KG Fat Loss</h3>
+
+            <p>
+              Complete body transformation through cardio and nutrition guidance.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="transform-card">
+
+          <img loading="lazy" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="transform-overlay">
+
+            <h3>Strength Transformation</h3>
+
+            <p>
+              Muscle building and powerlifting focused transformation journey.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FAQ -->
+
+  <section>
+
+    <div class="container faq">
+
+      <div class="section-top">
+
+        <p>FAQ</p>
+
+        <h2>Trainer Questions</h2>
+
+      </div>
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          Are all trainers certified?
+          <span class="faq-icon">+</span>
+        </div>
+
+        <div class="faq-answer">
+          Yes, all trainers are certified professionals with expertise in different workout domains.
+        </div>
+
+      </div>
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          Can beginners train with expert coaches?
+          <span class="faq-icon">+</span>
+        </div>
+
+        <div class="faq-answer">
+          Absolutely, trainers provide beginner-friendly workout and transformation guidance.
+        </div>
+
+      </div>
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          Are personal training sessions available?
+          <span class="faq-icon">+</span>
+        </div>
+
+        <div class="faq-answer">
+          Yes, gyms offer personalized training sessions according to fitness goals.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="logo">
+            MERA<span>GYM</span>
+          </div>
+
+          <p>
+            Discover premium fitness experiences and professional workout guidance around your city.
+          </p>
+
+        </div>
+
+        <div>
+
+          <h3>Explore</h3>
+
+          <p>Expert Trainers</p>
+          <p>Workout Programs</p>
+          <p>Fitness Categories</p>
+
+        </div>
+
+        <div>
+
+          <h3>Support</h3>
+
+          <p>Contact Us</p>
+          <p>Privacy Policy</p>
+          <p>Terms & Conditions</p>
+
+        </div>
+
+        <div>
+
+          <h3>Connect</h3>
+
+          <p>support@meragym××.com</p>
+          <p>+91 987654××××</p>
+          <p>Bhopal, Madhya Pradesh</p>
+
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        © 2026 Kytron Web Labs
+      </div>
+
+    </div>
+
+  </footer>
+
+  <script>
+
+    // MOBILE MENU
+
+    const hamburger = document.getElementById('hamburger');
+
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+
+      navLinks.classList.toggle('active');
+
+    });
+
+    // FAQ
+
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+
+      const question = item.querySelector('.faq-question');
+
+      const icon = item.querySelector('.faq-icon');
+
+      question.addEventListener('click', () => {
+
+        item.classList.toggle('active');
+
+        if(item.classList.contains('active')){
+
+          icon.innerHTML = '−';
+
+        } else {
+
+          icon.innerHTML = '+';
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
